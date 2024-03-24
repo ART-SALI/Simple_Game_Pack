@@ -73,7 +73,7 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('Game Over'),
+        title: const Text('Game Over'),
         content: Text(winner == 'Draw' ? 'It\'s a draw!' : 'Player $winner wins!'),
         actions: [
           TextButton(
@@ -81,7 +81,7 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
               resetGame();
               Navigator.pop(context);
             },
-            child: Text('Play Again'),
+            child: const Text('Play Again'),
           ),
         ],
       ),
@@ -98,7 +98,18 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Tic-Tac-Toe'),
+        title: const Text('Tic-Tac-Toe'),
+      ),
+      floatingActionButton: SizedBox(
+        height: 50,
+        width: 200,
+        child: FloatingActionButton(
+          onPressed: resetGame,
+          child: const Text('Reset Game',
+          style: TextStyle(
+            fontSize: 24
+          ),),
+        ),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -107,12 +118,12 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
             padding: const EdgeInsets.all(28.0),
             child: Text(
               'Current Player: $currentPlayer',
-              style: TextStyle(fontSize: 24),
+              style: const TextStyle(fontSize: 24),
             ),
           ),
           Expanded(
             child: GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
               ),
               itemCount: 9,
@@ -128,7 +139,7 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
                     child: Center(
                       child: Text(
                         board[row][col],
-                        style: TextStyle(fontSize: 48),
+                        style: const TextStyle(fontSize: 48),
                       ),
                     ),
                   ),
@@ -136,13 +147,7 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
               },
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(18.0),
-            child: ElevatedButton(
-              onPressed: resetGame,
-              child: Text('Reset Game'),
-            ),
-          ),
+
         ],
       ),
     );
