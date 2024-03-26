@@ -38,6 +38,12 @@ class _GameBoardMobileState extends State<GameBoardMobile> {
     getBestTime();
   }
 
+  @override
+  void dispose() {
+    timer.cancel();
+    super.dispose();
+  }
+
   void getBestTime() async {
     SharedPreferences gameSP = await SharedPreferences.getInstance();
     if (gameSP.getInt('${widget.gameLevel.toString()}BestTime') != null) {
