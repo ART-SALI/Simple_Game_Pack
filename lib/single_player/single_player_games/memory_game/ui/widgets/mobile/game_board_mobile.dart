@@ -10,7 +10,6 @@ import 'package:project_4/single_player/single_player_games/memory_game/ui/widge
 import 'package:project_4/single_player/single_player_games/memory_game/ui/widgets/restart_game.dart';
 import 'package:project_4/single_player/single_player_games/memory_game/models/game.dart';
 
-
 class GameBoardMobile extends StatefulWidget {
   const GameBoardMobile({
     required this.gameLevel,
