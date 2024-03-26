@@ -11,41 +11,46 @@ class SimpleGamesPackAppScreen extends StatefulWidget {
       _SimpleGamesPackAppScreenState();
 }
 
-class _SimpleGamesPackAppScreenState extends State<SimpleGamesPackAppScreen> {
-
+class _SimpleGamesPackAppScreenState extends State<SimpleGamesPackAppScreen>
+    with SingleTickerProviderStateMixin {
   int _pageIndex = 0;
+  late TabController tabController;
 
   void _onItemTapped(int index) {
     setState(() {
       _pageIndex = index;
     });
+    tabController.animateTo(_pageIndex);
   }
 
+  @override
+  void initState() {
+    super.initState();
+    tabController = TabController(length: body.length, vsync: this);
+  }
 
+  @override
+  void dispose() {
+    tabController.dispose();
+    super.dispose();
+  }
+
+  List<Widget> body = [
+    const TwoPlayersGamesList(),
+    const SinglePlayerGamesList()
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: const SimpleGamesPackDrawer(),
       backgroundColor: Colors.cyan,
-      appBar: AppBar(backgroundColor: Colors.green,),
-      body: Stack(
-        children: <Widget>[
-          Offstage(
-            offstage: _pageIndex != 0,
-            child: TickerMode(
-              enabled: _pageIndex == 0,
-              child: const TwoPlayersGamesList(),
-            ),
-          ),
-          Offstage(
-            offstage: _pageIndex != 1,
-            child: TickerMode(
-              enabled: _pageIndex == 1,
-              child: const SinglePlayerGamesList(),
-            ),
-          ),
-        ],
+      appBar: AppBar(
+        backgroundColor: Colors.green,
+      ),
+      body: TabBarView(
+        controller: tabController,
+        children: body,
       ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.green,
@@ -66,8 +71,3 @@ class _SimpleGamesPackAppScreenState extends State<SimpleGamesPackAppScreen> {
     );
   }
 }
-
-
-
-
-

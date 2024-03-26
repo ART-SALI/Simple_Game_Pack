@@ -18,9 +18,7 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
   void initializeGame() {
     board = List.generate(3, (_) => List.filled(3, ''));
     currentPlayer = 'X';
-    setState(() {
-
-    });
+    setState(() {});
   }
 
   void onCellTapped(int row, int col) {
@@ -39,17 +37,25 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
 
   String checkForWinner() {
     for (int i = 0; i < 3; i++) {
-      if (board[i][0] == board[i][1] && board[i][1] == board[i][2] && board[i][0].isNotEmpty) {
+      if (board[i][0] == board[i][1] &&
+          board[i][1] == board[i][2] &&
+          board[i][0].isNotEmpty) {
         return board[i][0];
       }
-      if (board[0][i] == board[1][i] && board[1][i] == board[2][i] && board[0][i].isNotEmpty) {
+      if (board[0][i] == board[1][i] &&
+          board[1][i] == board[2][i] &&
+          board[0][i].isNotEmpty) {
         return board[0][i];
       }
     }
-    if (board[0][0] == board[1][1] && board[1][1] == board[2][2] && board[0][0].isNotEmpty) {
+    if (board[0][0] == board[1][1] &&
+        board[1][1] == board[2][2] &&
+        board[0][0].isNotEmpty) {
       return board[0][0];
     }
-    if (board[0][2] == board[1][1] && board[1][1] == board[2][0] && board[0][2].isNotEmpty) {
+    if (board[0][2] == board[1][1] &&
+        board[1][1] == board[2][0] &&
+        board[0][2].isNotEmpty) {
       return board[0][2];
     }
 
@@ -74,7 +80,8 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
       context: context,
       builder: (context) => AlertDialog(
         title: const Text('Game Over'),
-        content: Text(winner == 'Draw' ? 'It\'s a draw!' : 'Player $winner wins!'),
+        content:
+            Text(winner == 'Draw' ? 'It\'s a draw!' : 'Player $winner wins!'),
         actions: [
           TextButton(
             onPressed: () {
@@ -105,10 +112,10 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
         width: 200,
         child: FloatingActionButton(
           onPressed: resetGame,
-          child: const Text('Reset Game',
-          style: TextStyle(
-            fontSize: 24
-          ),),
+          child: const Text(
+            'Reset Game',
+            style: TextStyle(fontSize: 24),
+          ),
         ),
       ),
       body: Column(
@@ -147,10 +154,8 @@ class _TicTacToeGameState extends State<TicTacToeGame> {
               },
             ),
           ),
-
         ],
       ),
     );
   }
-
 }
