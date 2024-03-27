@@ -27,6 +27,11 @@ class _SimpleGamesPackAppScreenState extends State<SimpleGamesPackAppScreen>
   void initState() {
     super.initState();
     tabController = TabController(length: body.length, vsync: this);
+    tabController.addListener(() {
+      setState(() {
+        _pageIndex = tabController.index;
+      });
+    });
   }
 
   @override
